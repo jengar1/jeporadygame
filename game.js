@@ -84,5 +84,41 @@ function fillTable(categories){
     }
 }
 funtion handleClickOfClue(event){
-    if active
+    if (activeClueMode !== 0) return;
+    let clueId = event.target.id;
+    let [_, catId, clueRealId] = clueId.splie ("-");
+
+    let category = categories.find(c => c.id == catId)
+    let clue = category.clues.find (cl => cl.id == clueRealId);
+    
+    activeClue = clue;
+    activeClueMode = 1;
+
+    $(event.target).addClass("viewed").off("click");
+    $("#active-clue").html(clue.question);
+}
+$("#actuve-clue").on("click", handleClickOfActiveClue);
+
+function handleClickOfActiveClue(){
+    if(activeClue) return;
+    if (activeClueMode === 1){
+        activeClueMode=2;
+        $("#active-clue").html(activeClue.answer);
+    }
+    else if(activeClueMode === 2){
+        activeClueMode =0;
+        $("#active-clue").html("");
+
+        for (let cat of categories){
+            cat.clues = cat.clues.filter(c => c.id !== activeClue.id);
+        }
+        categories = categories.filter (cat => cat.clues.length > 0);
+
+        if  (categories.length ===0){
+            isPlayButtonClickable = true;
+            $("#play").text ("Restart The Game");
+            $("#active-clue").html ("The End. You completed all clues");
+        }
+        activeClue= null;
+    }
 }
