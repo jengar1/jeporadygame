@@ -1,4 +1,4 @@
-const API_URL 
+const API_URL "https://rithm-jeopardy.herokuapp.com/api/";
 const NUMBER_OF_CATEGORIES = 8;
 const NUMBER_OF_CLUES_PER_CATEGORY = 6;
 
@@ -68,4 +68,21 @@ async function getCategoryData(categoryId) {
         clues: formattedClues
     };
 }
-
+function fillTable(categories){
+    for (let i =0; i < NUMBER_OF_CLUES_PER_CATEGORY; i++){
+        let tr = $("<tr>");
+        for (let cat of categories){
+            let clue = cat.clues[i];
+            let td = $("<td>")
+            .text ('$${clue.value}')
+            attr ("id", 'clue-${cat.id}-${clue.id}')
+            addClass ("clue")
+            on("click", handleClickOfClue);
+            tr.append(td);
+        }
+        $("#clues").append(tr);
+    }
+}
+funtion handleClickOfClue(event){
+    if active
+}
