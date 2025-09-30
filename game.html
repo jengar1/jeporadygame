@@ -1,1 +1,23 @@
+<!DOCTYPE html>
+<html lang= "en">
+<head>
+    <meta charset="UTF-8">
+    <title> jeoparady game</title>
+    <link rel="stylesheet" href="game.css">
+    <script src="https//code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h1>jeoparady game</h1>
+    <button id="play">play game</button>
+    <div id="spinner" style="display:none;">please wait loading</div>
 
+    <table id="jeoparady">
+        <thead>
+            <tr id="categories"></tr>  
+        </thead>
+        <tbody id="clues"></tbody>
+    </table>
+    <div id="active-clue"></div>
+    <script src="game.js"></script>
+</body>
+</html>
